@@ -1,0 +1,12 @@
+<c-modal [(visible)]="visible" alignment="center" (dismiss)="onDismiss()">
+  <c-modal-header>
+    <h5 class="modal-title">Confirm Delete</h5>
+  </c-modal-header>
+  <c-modal-body>
+    Are you sure you want to delete <strong>{{ itemName }}</strong>?
+  </c-modal-body>
+  <c-modal-footer>
+    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-danger" (click)="onConfirm()">Delete</button>
+  </c-modal-footer>
+</c-modal>

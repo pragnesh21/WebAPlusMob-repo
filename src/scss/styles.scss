@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+
+// Import styles with default layout.
+@use "@coreui/coreui/scss/coreui" as * with (
+  $enable-deprecation-messages: false
+);
+
+// Import Chart.js custom tooltips styles
+@use "@coreui/chartjs/scss/coreui-chartjs";
+
+// Custom styles for this theme
+@use "theme";
+
+// Some temp fixes
+//@use "fixes";
+
+// If you want to add custom CSS you can put it here.
+@use "custom";
+
+// Examples
+// We use those styles to show code examples, you should remove them in your application.
+@use "examples";
+
+//// manually added 
+/// 
+/* styles.scss */
+// @media (max-width: 576px) {
+//   .p-multiselect-panel {
+//     position: fixed !important;
+//     top: 0 !important;
+//     left: 0 !important;
+//     width: 100vw !important;
+//     height: 100vh !important;
+//     border-radius: 0 !important;
+//     box-shadow: none !important;
+//     z-index: 1100 !important;
+//   }
+
+//   .p-multiselect-items-wrapper {
+//     max-height: calc(100vh - 60px) !important;
+//     overflow-y: auto;
+//   }
+
+//   .p-multiselect-header {
+//     padding: 1rem !important;
+//     font-size: 1.2rem;
+//   }
+// }
+///2nd 
+/// 
+/* Fullscreen MultiSelect on mobile */
+@media (max-width: 768px) {
+  .p-multiselect-panel {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    z-index: 1100 !important;
+  }
+
+  .p-multiselect-items-wrapper {
+    max-height: calc(100vh - 60px) !important;
+    overflow-y: auto !important;
+  }
+
+  .p-multiselect-header {
+    padding: 1rem !important;
+    font-size: 1.2rem !important;
+  }
+
+  .p-multiselect-close {
+    font-size: 1.5rem !important;
+  }
+}
+
+
+
+@import "primeicons/primeicons.css";
+
+
+//// for greay multiselet

@@ -1,0 +1,109 @@
+<div>
+  <!-- Top Bar -->
+  <div class="d-flex justify-content-end align-items-center mb-3">
+    <button class="btn btn-outline-secondary me-3" routerLink="/settings">
+      ← Back
+    </button>
+    <button class="btn btn-primary" routerLink="create">
+      + Add New User
+    </button>
+  </div>
+
+
+<!-- <app-delete-confirm
+  [visible]="deleteModalVisible"
+  [itemName]="selectedUser?.name"
+  (confirm)="deleteUser()"
+  (cancel)="deleteModalVisible = false">
+</app-delete-confirm> -->
+
+
+  <div class="d-none d-md-block">
+    <ngx-datatable class="bootstrap" [rows]="users" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50"
+      [rowHeight]="'auto'" [limit]="5">
+      <ngx-datatable-column name="#" [width]="50" [sortable]="false">
+        <ng-template let-rowIndex="rowIndex" ngx-datatable-cell-template>
+          {{ rowIndex + 1 }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <!-- {{ row.firstName }} {{ row.lastName }} -->
+            {{ row.name }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Email" prop="email"></ngx-datatable-column>
+      <!-- <ngx-datatable-column name="Role" prop="userType"></ngx-datatable-column> -->
+      <ngx-datatable-column name="Role" prop="role"></ngx-datatable-column>
+      <ngx-datatable-column name="Status">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          <span class="badge" [ngClass]="row.isActive ? 'bg-success' : 'bg-danger'">
+            {{ row.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </ng-template>
+      </ngx-datatable-column>
+<ngx-datatable-column name="Actions" >
+  <ng-template let-row="row" ngx-datatable-cell-template>
+    <button class="btn btn-outline-secondary me-2" title="Edit User" (click)="editUser(row.id)" >  <span class="pi pi-user-edit" ></span> </button>
+    <button class="btn btn-outline-danger " title="Delete User"  (click)="deleteUser(row)"><span class="pi pi-trash" ></span> </button>
+  </ng-template>
+</ngx-datatable-column>
+
+
+    </ngx-datatable>
+  </div>
+  <div class="d-block d-md-none">
+    <div class="row">
+      <div class="col-12" *ngFor="let user of pagedUsers">
+        <c-card class="mb-3 shadow-sm">
+          <c-card-body>
+            <!-- <h5>{{ user.firstName }} {{ user.lastName }}</h5> -->
+       <div class="d-flex justify-content-between">
+      <h5><strong>{{ user.name }}</strong>  </h5>
+      <div>
+        <button class="btn btn-outline-secondary btn-sm me-1"  title="Edit User"  (click)="editUser(user.id)">
+          <span class="pi pi-user-edit"></span>
+        </button>
+        <button class="btn btn-outline-danger btn-sm" title="Delete User" (click)="deleteUser(user)">
+          <span class="pi pi-trash"></span>
+        </button>
+      </div>
+    </div>
+    
+            <p class="mb-1"><strong>Email:</strong> {{ user.email }}</p>
+            <!-- <p class="mb-1"><strong>Role:</strong> {{ user.userType }}</p> -->
+            <p class="mb-1"><strong>Role:</strong> {{ user.role }}</p>
+            <span class="badge" [ngClass]="user.isActive ? 'bg-success' : 'bg-danger'">
+              {{ user.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </c-card-body>
+           <!-- <c-card-footer class="d-flex justify-content-end">
+          <button class="btn btn-outline-secondary btn-sm me-2" >
+            <span class="pi pi-user-edit"></span>
+          </button>
+          <button class="btn btn-outline-danger btn-sm" >
+            <span class="pi pi-trash"></span>
+          </button>
+        </c-card-footer> -->
+        </c-card>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <nav class="mt-3">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <a class="page-link" (click)="changePage(currentPage - 1)">Previous</a>
+        </li>
+        <li class="page-item" *ngFor="let p of [].constructor(totalPages); let i = index"
+          [class.active]="currentPage === i + 1">
+          <a class="page-link" (click)="changePage(i + 1)">{{ i + 1 }}</a>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <a class="page-link" (click)="changePage(currentPage + 1)">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+

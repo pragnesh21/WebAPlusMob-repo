@@ -1,0 +1,52 @@
+table {
+  th,
+  td {
+    vertical-align: middle;
+  }
+}
+
+c-card {
+  border-radius: 1rem;
+}
+
+
+// Increase font size inside ngx-datatable
+ngx-datatable.bootstrap {
+  font-size: 1rem;  // default ~14px, try 16px
+}
+
+ngx-datatable.bootstrap .datatable-body-cell {
+  font-size: 1rem;
+}
+
+ngx-datatable.bootstrap .datatable-header-cell {
+  font-size: 1rem;
+  font-weight: 600; // make headers bolder if needed
+}
+
+
+
+////newly added 
+
+:host ::ng-deep ngx-datatable {
+  .datatable-header .datatable-header-cell .datatable-header-cell-label {
+    font-weight: bold;
+  }
+
+  .datatable-body .datatable-row .datatable-cell {
+    border: 0.5px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .datatable-header .datatable-header-cell {
+    border-right: 0.5px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .datatable-header .datatable-header-cell:last-child,
+  .datatable-body .datatable-row .datatable-cell:last-child {
+    border-right: none;
+  }
+}
+
+
+
+

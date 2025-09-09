@@ -1,0 +1,165 @@
+<div class="container-fluid">
+  <div class="row">
+    <!-- Company Settings -->
+    <div class="col-md-4 col-sm-12 mb-4">
+      <c-card>
+        <c-card-header>Company Settings</c-card-header>
+        <c-card-body>
+          <div class="d-grid gap-2">
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon  name="cilPlus" class="me-2"></c-icon>
+              Segments
+            </button>
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon class="me-2" name="cilBuilding"></c-icon>
+              Company Setup
+            </button>
+        
+            <button routerLink="users" class="btn btn-secondary d-flex align-items-center justify-content-start" >
+              <c-icon  name="cilUser" class="me-2"></c-icon>
+              Users
+            </button>
+            
+             <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon  name="cilPuzzle" class="me-2"></c-icon>
+              Roles
+            </button> 
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon  name="cilPenAlt" class="me-2"></c-icon>
+              Rights
+            </button>
+          </div>
+        </c-card-body>
+      </c-card>
+    </div>
+
+    <!-- Other Settings -->
+    <div class="col-md-4 col-sm-12 mb-4">
+      <c-card>
+        <c-card-header>Other Settings</c-card-header>
+        <c-card-body>
+          <div class="d-grid gap-2">
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon cIcon name="cilTask" class="me-2"></c-icon>
+              Status & Process
+            </button>
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon cIcon name="cilBell" class="me-2"></c-icon>
+              Notifications SetUp
+            </button>
+          </div>
+        </c-card-body>
+      </c-card>
+    </div>
+
+    <!-- More Settings -->
+    <div class="col-md-4 col-sm-12 mb-4">
+      <c-card>
+        <c-card-header>More Settings</c-card-header>
+        <c-card-body>
+          <div class="d-grid gap-2">
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon cIcon name="cilSpreadsheet" class="me-2"></c-icon>
+              Email Setups
+            </button>
+            <button class="btn btn-secondary d-flex align-items-center justify-content-start">
+              <c-icon cIcon name="cilBike" class="me-2"></c-icon>
+               Email Logs
+            </button>
+          </div>
+        </c-card-body>
+      </c-card>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <c-accordion [alwaysOpen]="true">   <!-- allow multiple sections open -->
+
+    <div class="row">
+      <div class="col-md-4 col-sm-12 mb-4">
+        <!-- Company Settings -->
+        <c-accordion-item #company="cAccordionItem" [visible]="true">
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="company.toggleItem()" cAccordionButton [collapsed]="!company.visible">
+              <c-icon class="me-2" name="cilBurger"></c-icon>
+              Company Settings
+            </button>
+          </ng-template>
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="accordion-body">
+              <button class="btn btn-secondary w-100 text-start mb-2">
+             <c-icon  name="cilPlus" class="me-2"></c-icon>
+              Segments
+              </button>
+              <button class="btn btn-secondary w-100 text-start mb-2">
+                <c-icon class="me-2" name="cilBuilding"></c-icon>
+              Company Setup
+              </button>
+              <button routerLink="/settings/users"  class="btn btn-secondary w-100 text-start mb-2">
+                 <c-icon  name="cilUser" class="me-2"></c-icon>
+              Users
+              </button>
+              <button class="btn btn-secondary w-100 text-start mb-2">
+              <c-icon  name="cilPuzzle" class="me-2"></c-icon>
+              Roles
+              </button>
+              <button class="btn btn-secondary w-100 text-start">
+                  <c-icon  name="cilPenAlt" class="me-2"></c-icon>
+              Rights
+              </button>
+            </div>
+          </ng-template>
+        </c-accordion-item>
+      </div>
+
+      <div class="col-md-4 col-sm-12 mb-4">
+        <!-- Other Settings -->
+        <c-accordion-item #other="cAccordionItem" [visible]="true">
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="other.toggleItem()" cAccordionButton [collapsed]="!other.visible">
+              <c-icon class="me-2" name="cilBell"></c-icon>
+              Other Settings
+            </button>
+          </ng-template>
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="accordion-body">
+              <button class="btn btn-secondary w-100 text-start mb-2">
+                 <c-icon cIcon name="cilTask" class="me-2"></c-icon>
+              Status & Process
+              </button>
+              <button class="btn btn-secondary w-100 text-start">
+                <c-icon cIcon name="cilBell" class="me-2"></c-icon>
+              Notifications SetUp
+              </button>
+            </div>
+          </ng-template>
+        </c-accordion-item>
+      </div>
+
+      <div class="col-md-4 col-sm-12 mb-4">
+        <!-- More Settings -->
+        <c-accordion-item #more="cAccordionItem" [visible]="true">
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="more.toggleItem()" cAccordionButton [collapsed]="!more.visible">
+              <c-icon class="me-2" name="cilApps"></c-icon>
+              More Settings
+            </button>
+          </ng-template>
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="accordion-body">
+              <button class="btn btn-secondary w-100 text-start mb-2">
+                   <c-icon cIcon name="cilSpreadsheet" class="me-2"></c-icon>
+              Email Setups
+              </button>
+              <button class="btn btn-secondary w-100 text-start">
+                 <c-icon cIcon name="cilBike" class="me-2"></c-icon>
+               Email Logs
+              </button>
+            </div>
+          </ng-template>
+        </c-accordion-item>
+      </div>
+    </div>
+  </c-accordion>
+</div>

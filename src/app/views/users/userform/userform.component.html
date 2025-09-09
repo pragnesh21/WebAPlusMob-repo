@@ -1,0 +1,346 @@
+<!-- ======================= -->
+<!-- ADD / EDIT USER FORM -->
+<!-- ======================= -->
+
+
+<div >
+  <!-- Page Title -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="mb-0">{{ isEdit ? 'Edit User' : 'Add User' }}</h4>
+    <button class="btn btn-outline-secondary" routerLink="/settings/users" >← Back</button>
+  </div>
+
+  <form [formGroup]="userForm" (ngSubmit)="saveUser()">
+    <div>
+      <c-accordion [alwaysOpen]="true">
+
+        <!-- Personal Information -->
+        <c-accordion-item #personal="cAccordionItem" [visible]="true">
+          <!-- Header -->
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="personal.toggleItem()" cAccordionButton [collapsed]="!personal.visible">
+              <c-icon class="me-2" name="cilUser"></c-icon>
+              Personal Information
+            </button>
+          </ng-template>
+
+          <!-- Body -->
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="row container-fluid me-2 mt-2">
+             
+             
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">First Name   <span class="text-danger">*</span></label>
+                <input class="form-control" formControlName="firstName" 
+                [ngClass]="{
+                    'is-invalid': userForm.get('firstName')?.invalid && (userForm.get('firstName')?.touched || userForm.get('firstName')?.dirty)
+                  }" 
+                  />
+                @if(userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched){
+                <div class="invalid-feedback">
+                  First Name is required
+                </div>
+                }            
+              </div>
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Last Name <span class="text-danger">*</span></label>
+                <input class="form-control" formControlName="lastName" 
+                 [ngClass]="{
+                    'is-invalid': userForm.get('lastName')?.invalid && (userForm.get('lastName')?.touched || userForm.get('lastName')?.dirty)
+                  }" 
+                />
+                  @if(userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched){
+                <div class="invalid-feedback">
+                  Last Name is required
+                </div>
+                } 
+              </div>
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" formControlName="email" 
+                  [ngClass]="{
+                    'is-invalid': userForm.get('email')?.invalid && (userForm.get('email')?.touched || userForm.get('email')?.dirty)
+                  }" 
+                />
+
+                   @if(userForm.get('email')?.invalid && userForm.get('email')?.touched){
+              
+
+        <div  class="invalid-feedback" *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div  class="invalid-feedback" *ngIf="userForm.get('email')?.errors?.['email']">Invalid email format.</div>
+
+                } 
+              </div>
+
+
+
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Phone Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" formControlName="phoneNumber" 
+                 [ngClass]="{
+                    'is-invalid': userForm.get('phoneNumber')?.invalid && (userForm.get('phoneNumber')?.touched || userForm.get('phoneNumber')?.dirty)
+                  }" 
+                />
+              
+                 @if(userForm.get('phoneNumber')?.invalid && userForm.get('phoneNumber')?.touched){            
+        <div  class="invalid-feedback" *ngIf="userForm.get('phoneNumber')?.errors?.['required']">Phone Number is required.</div>
+        <div  class="invalid-feedback" *ngIf="userForm.get('phoneNumber')?.errors?.['pattern']">Must be upto 10 digit.</div>
+                } 
+              </div>
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Username <span class="text-danger">*</span></label>
+                <input class="form-control" formControlName="userName"
+                 [ngClass]="{
+                    'is-invalid': userForm.get('userName')?.invalid && (userForm.get('userName')?.touched || userForm.get('userName')?.dirty)
+                  }" 
+                />
+                   @if(userForm.get('userName')?.invalid && userForm.get('userName')?.touched){            
+        <div  class="invalid-feedback" *ngIf="userForm.get('userName')?.errors?.['required']">Username is required.</div>
+                } 
+              </div>
+            
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Password 
+                @if(!isEdit){
+                  <span class="text-danger">*</span>
+                }
+                </label>
+                <input type="password" class="form-control" formControlName="password" 
+                 [ngClass]="{
+                    'is-invalid': userForm.get('password')?.invalid && (userForm.get('password')?.touched || userForm.get('password')?.dirty)
+                  }" 
+                />
+                  
+                @if(userForm.get('password')?.invalid && userForm.get('password')?.touched){            
+        <div  class="invalid-feedback" *ngIf="userForm.get('password')?.errors?.['required']">Password is required.</div>
+       <div  class="invalid-feedback" *ngIf="userForm.get('password')?.errors?.['minlength']">minimum 6 characters password required. </div>
+        <div  class="invalid-feedback" *ngIf="userForm.get('password')?.errors?.['passwordStrength']">Password should contains a uppercase-lowercase-letter-number.</div>
+
+                } 
+              </div>
+
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Date of Birth <span class="text-danger">*</span></label>
+                <!-- input with ng-bootstrap datepicker -->
+                <input class="form-control" placeholder="" name="dob" ngbDatepicker #d="ngbDatepicker" formControlName="dob"
+                  (click)="d.open()"
+                  
+                   [ngClass]="{
+                    'is-invalid': userForm.get('dob')?.invalid && (userForm.get('dob')?.touched || userForm.get('dob')?.dirty)
+                  }" 
+                  />
+                   @if(userForm.get('dob')?.invalid && userForm.get('dob')?.touched){            
+                  <div  class="invalid-feedback" *ngIf="userForm.get('dob')?.errors?.['required']">Date of Birth is required.</div>
+
+                } 
+
+              </div>
+            
+            
+            
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Employee No</label>
+                <input class="form-control" formControlName="empNo" />
+              </div>
+            
+              <div class="col-md-4 col-sm-12 mb-3 d-flex align-items-center">
+                <c-form-check class="form-check-lg ms-4">
+                  <input cFormCheckInput formControlName="isActive" class="fs-4" type="checkbox" id="activeCheck"
+                   [ngClass]="{
+                    'is-invalid': userForm.get('isActive')?.invalid && (userForm.get('isActive')?.touched || userForm.get('isActive')?.dirty)
+                  }" 
+                  />
+                  <label cFormCheckLabel for="activeCheck" class="fw-semibold fs-5">Active</label>
+                    @if(userForm.get('isActive')?.invalid && userForm.get('isActive')?.touched){            
+                  <div  class="invalid-feedback" *ngIf="userForm.get('isActive')?.errors?.['required']">This is required.</div>
+
+                } 
+                </c-form-check>
+              </div>
+            
+            
+            
+            </div>
+          </ng-template>
+        </c-accordion-item>
+
+        <!-- Address -->
+        <c-accordion-item #address="cAccordionItem" [visible]="true" class="mt-2">
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="address.toggleItem()" cAccordionButton [collapsed]="!address.visible">
+              <c-icon class="me-2" name="cilHome"></c-icon>
+              Address
+            </button>
+          </ng-template>
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="row container-fluid mt-2 me-2">
+              <div class="col-12 mb-3">
+                <label class="form-label fw-semibold">Address</label>
+                <textarea class="form-control" formControlName="address"></textarea>
+              </div>
+
+            </div>
+          </ng-template>
+        </c-accordion-item>
+
+        <!-- Other Details -->
+        <c-accordion-item #other="cAccordionItem" [visible]="true" class="mt-2">
+          <ng-template cTemplateId="accordionHeaderTemplate">
+            <button (click)="other.toggleItem()" cAccordionButton [collapsed]="!other.visible">
+              <c-icon class="me-2" name="cilSettings"></c-icon>
+              Other Details
+            </button>
+          </ng-template>
+          <ng-template cTemplateId="accordionBodyTemplate">
+            <div class="row container-fluid mt-2 me-2">
+
+
+              <!-- <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">User Type</label>
+                <select class="form-select" formControlName="userType">
+                  <option value="Internal">Internal</option>
+                  <option value="External">External</option>
+                </select>
+              </div> -->
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">User Type <span class="text-danger">*</span> </label>
+                <div class=" card flex justify-center">
+                  <p-select [options]="UserTypeslist" formControlName="userType" [filter]="true" appendTo="body"
+                    filterBy="name" [checkmark]="true" optionLabel="name" [showClear]="true"
+                    placeholder="Select User Type" class="w-full md:w-56"
+                   [ngClass]="{
+        'p-invalid is-invalid ': userForm.get('userType')?.invalid && (userForm.get('userType')?.touched || userForm.get('userType')?.dirty)
+      }" 
+      
+      />                  
+                 @if(userForm.get('userType')?.invalid && userForm.get('userType')?.touched){            
+                  <div  class="invalid-feedback ms-1" *ngIf="userForm.get('userType')?.errors?.['required']">User Type is required.</div>
+                  
+                }
+                </div>
+              </div>
+
+              <!-- <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Role</label>
+                <select class="form-select" formControlName="roleName">
+                  <option value="User">User</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div> -->
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Role <span class="text-danger">*</span> </label>
+                <div class=" card flex justify-center">
+                  <p-select [options]="Rolelist" formControlName="roleName" [filter]="true" appendTo="body"
+                    filterBy="name" [checkmark]="true" optionLabel="name" [showClear]="true" placeholder="Select a Role"
+                    class="w-full md:w-56" 
+                    [ngClass]="{
+        'p-invalid is-invalid': userForm.get('roleName')?.invalid && (userForm.get('roleName')?.touched || userForm.get('roleName')?.dirty)
+      }" 
+      />
+              @if(userForm.get('roleName')?.invalid && userForm.get('roleName')?.touched){            
+                  <div  class="invalid-feedback ms-1" *ngIf="userForm.get('roleName')?.errors?.['required']">Role is required.</div>
+                  
+                }
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div class="col-md-4 col-sm-12 mb-3">
+                <label class="form-label fw-semibold">Branches <span class="text-danger">*</span> </label>
+                <div class="card flex justify-content-center">
+                  <p-multiselect [options]="branches" [filter]="true" appendTo="body" formControlName="branchIds"
+                    placeholder="Select Branches" optionLabel="name" display="chip" class="w-full md:w-56 " 
+                    [ngClass]="{
+                      'p-invalid is-invalid': userForm.get('branchIds')?.invalid && (userForm.get('branchIds')?.touched || userForm.get('branchIds')?.dirty)
+                    }"
+                     />
+                 @if(userForm.get('branchIds')?.invalid && userForm.get('branchIds')?.touched){            
+                  <div  class="invalid-feedback ms-1" *ngIf="userForm.get('branchIds')?.errors?.['required']">Branch is required.</div>
+                  
+                }
+
+                </div>
+              </div>
+
+
+
+
+
+              <!-- <div class="col-12 mb-3">
+            <label class="form-label fw-semibold">Branches</label>
+            <select class="form-select" formControlName="branchIds" multiple>
+              <option *ngFor="let branch of branches" [value]="branch.id">
+                {{ branch.name }}
+              </option>
+            </select>
+          </div> -->
+
+              <!-- <div class="col-12 mb-3">
+ <label class="form-label fw-semibold">Branches</label>
+
+ <p-multiSelect 
+      [options]="branches" 
+      formControlName="branchIds"
+      optionLabel="name"
+      placeholder="Select Cities">
+    </p-multiSelect>
+
+
+      </div>     -->
+
+
+
+            </div>
+          </ng-template>
+        </c-accordion-item>
+
+      </c-accordion>
+    </div>
+
+
+
+    <!-- Save Button -->
+    <div class="text-end  py-3 border-top">
+      <button type="submit" class="btn btn-outline-success px-5"> Save</button>
+    </div>
+  </form>
+</div>
+
+
+<!-- <div class="container mt-4">
+  <h5>Datepicker Test</h5>
+  
+  <div class="row">
+    <div class="col-md-4 col-sm-12 mb-3">
+      <label class="form-label fw-semibold">Select Date</label>
+      <input type="text" class="form-control" placeholder="Choose date" >
+    </div>
+  </div>
+</div> -->
