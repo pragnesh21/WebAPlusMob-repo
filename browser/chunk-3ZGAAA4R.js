@@ -1,0 +1,1 @@
+import"./chunk-MTBLVN3Q.js";var e=[{path:"",loadComponent:()=>import("./chunk-S2AZ2X6U.js").then(t=>t.SettingsComponent),data:{title:"Settings"}},{path:"users",loadChildren:()=>import("./chunk-63AMMAPW.js").then(t=>t.routes),data:{title:"Settings / Users"}}];export{e as routes};
