@@ -1,0 +1,1 @@
+import"./chunk-MTBLVN3Q.js";var t=[{path:"",loadComponent:()=>import("./chunk-32IPPDEF.js").then(o=>o.UserslistComponent)},{path:"create",loadComponent:()=>import("./chunk-DUWROLP4.js").then(o=>o.UserformComponent)},{path:"edit/:id",loadComponent:()=>import("./chunk-DUWROLP4.js").then(o=>o.UserformComponent)}];export{t as routes};
